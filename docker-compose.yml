@@ -2,9 +2,10 @@ version: "3.9"
 services:
   tcpp-db:
     image: mariadb
+    # container_name: tcpp-db
     restart: always
     volumes:
-      - tcpp_db:/var/lib/mysql
+      - tcpp-db:/var/lib/mysql
     environment:
       - MYSQL_USER=trinity
       - MYSQL_PASSWORD=trinity
@@ -13,10 +14,25 @@ services:
       # TODO: make this port only accessible from localhost since it should be just used for debugging the database and not be accessable to non host's on the host's lan
       - "3307:3306"
 
+  tcpp-base:
+    build:
+      context: ./
+      dockerfile: ./docker/base/Dockerfile
+    image: dockerize-tcpp/tcpp-base
+    # We just need to have this built not running
+    scale: 0 
+    # volumes:
+    #   - ./tcpp-repo:/tcpp-repo
+
   tcpp-worldserver:
     build: ./docker/worldserver
-    volumes:
-      - ./tcpp-repo:/tcpp-repo
+    image: dockerize-tcpp/tcpp-worldserver
+    depends_on:
+      - tcpp-base
+      - tcpp-db
+    # volumes:
+    #   - ./tcpp-repo:/tcpp-repo
+    #   # - ./test:/server
 
 volumes:
   tcpp-db:
