@@ -12,7 +12,7 @@ services:
       - MYSQL_ROOT_PASSWORD=trinity
     ports:
       # TODO: make this port only accessible from localhost since it should be just used for debugging the database and not be accessable to non host's on the host's lan
-      - "3307:3306"
+      - "127.0.0.1:3307:3306"
 
   tcpp-base:
     build:
@@ -30,9 +30,14 @@ services:
     depends_on:
       - tcpp-base
       - tcpp-db
-    # volumes:
-    #   - ./tcpp-repo:/tcpp-repo
-    #   # - ./test:/server
+    ports:
+        # - '1118:1118' # This one is for the authserver and ony has to open internally
+        - '8085:8085'
+        # - '8086:8086' # this one is also probably not required since it is used for Metrics if enabled (although not sure)
+    volumes:
+      - ./tcpp-repo:/tcpp-repo
+      - ./server-data:/tcpp-server/data
+    #   # - ./test:/tcpp-server
 
 volumes:
   tcpp-db:

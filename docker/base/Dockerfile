@@ -16,8 +16,12 @@ RUN update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang 100
 
 COPY ./tcpp-repo /tcpp-repo
 
-RUN rm -rf /tcpp-repo/build
-RUN mkdir /tcpp-repo/build
-WORKDIR /tcpp-repo/build
-RUN cmake ../ -DCMAKE_INSTALL_PREFIX=/server -DWITH_DYNAMIC_LINKING=ON -DSCRIPTS="dynamic"
+RUN mkdir /tcpp-build
+WORKDIR /tcpp-build
+RUN cmake /tcpp-repo -DCMAKE_INSTALL_PREFIX=/tcpp-server -DWITH_DYNAMIC_LINKING=ON -DSCRIPTS="dynamic"
+
+# RUN rm -rf /tcpp-repo/build
+# RUN mkdir /tcpp-repo/build
+# WORKDIR /tcpp-repo/build
+# RUN cmake ../ -DCMAKE_INSTALL_PREFIX=/tcpp-server -DWITH_DYNAMIC_LINKING=ON -DSCRIPTS="dynamic"
 RUN make -j$(grep processor /proc/cpuinfo | wc -l) install
