@@ -1,4 +1,9 @@
 client-data
-server-data
-server-etc
+server-data/**
 tcpp-repo
+tcpp-tdb/**
+configs/worldserver-changes.conf
+configs/bnetserver-changes.conf
+
+
+!.gitkeep

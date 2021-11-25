@@ -37,10 +37,17 @@ services:
     volumes:
       - ./tcpp-repo:/tcpp-repo
       - ./server-data:/tcpp-server/data
-      # - type: bind
-      #   source: ${PWD}/worldserver.conf.dist
-      #   target: /tcpp-worldserver/etc/worldserver.conf.dist
-    #   # - ./test:/tcpp-server
+      - ./configs:/tcpp-configs
+      # - tcpp-configs:/tcpp-server/etc
 
 volumes:
   tcpp-db:
+  # # The only solution that works when trying to get files out (and keep in sync) of the container upon initialisation of the container
+  # # https://stackoverflow.com/a/52167722/13620003
+  # # However it has to be noted that the ./configs folder NEEDS to exist for this to wokr
+  # tcpp-configs:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: ./configs

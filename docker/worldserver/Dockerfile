@@ -14,7 +14,7 @@ RUN rm -rf /tcpp-repo
 # ENTRYPOINT ["tail"]
 # CMD ["-f","/dev/null"]
 
-RUN apt-get install -y --no-install-recommends crudini
+# RUN apt-get install -y --no-install-recommends crudini
 COPY ./worldserver-base-changes.conf /
 RUN touch /tcpp-server/etc/worldserver.conf && crudini --output=/tcpp-server/etc/worldserver.conf --merge /tcpp-server/etc/worldserver.conf.dist < /worldserver-base-changes.conf
 
