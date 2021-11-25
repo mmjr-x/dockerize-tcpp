@@ -37,6 +37,9 @@ services:
     volumes:
       - ./tcpp-repo:/tcpp-repo
       - ./server-data:/tcpp-server/data
+      # - type: bind
+      #   source: ${PWD}/worldserver.conf.dist
+      #   target: /tcpp-worldserver/etc/worldserver.conf.dist
     #   # - ./test:/tcpp-server
 
 volumes:
