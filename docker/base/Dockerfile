@@ -14,6 +14,7 @@ RUN apt-get update -y \
   && apt-get install -y --no-install-recommends git clang cmake make gcc g++ libmariadbclient-dev-compat libssl-dev libbz2-dev libreadline-dev libncurses-dev libboost-all-dev mariadb-server p7zip default-libmysqlclient-dev \
   && update-alternatives --install /usr/bin/cc cc /usr/bin/clang 100 \
   && update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang 100 \
+  && apt-get clean -y \
   \
   && mkdir /tcpp-build \
   && cd /tcpp-build \
@@ -27,4 +28,5 @@ RUN cd /tcpp-server/bin \
   && 7zr x $TDB_FILENAME \
   && rm $TDB_FILENAME \
   \
-  && apt-get install -y --no-install-recommends crudini
+  && apt-get install -y --no-install-recommends crudini \
+  && apt-get clean -y

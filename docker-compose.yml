@@ -24,6 +24,19 @@ services:
     # volumes:
     #   - ./tcpp-repo:/tcpp-repo
 
+  # tcpp-bnetserver:
+  #   build: ./docker/bnetserver
+  #   image: dockerize-tcpp/tcpp-bnetserver
+  #   depends_on:
+  #     - tcpp-base
+  #     - tcpp-db
+  #   ports:
+  #     - '1118'
+  #     - '1119:1119'
+  #   volumes:
+  #     # - ./tcpp-repo:/tcpp-repo
+  #     - ./configs:/tcpp-configs
+
   tcpp-worldserver:
     build: ./docker/worldserver
     image: dockerize-tcpp/tcpp-worldserver
@@ -33,7 +46,7 @@ services:
     ports:
         # - '1118:1118' # This one is for the authserver and ony has to open internally
         - '8085:8085'
-        # - '8086:8086' # this one is also probably not required since it is used for Metrics if enabled (although not sure)
+        - '8086:8086' # this one is also probably not required since it is used for Metrics if enabled (although not sure)
     volumes:
       - ./tcpp-repo:/tcpp-repo
       - ./server-data:/tcpp-server/data
