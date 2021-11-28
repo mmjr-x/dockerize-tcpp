@@ -12,7 +12,7 @@ set -euxo pipefail
 
 # Start the worldserver
 cd /tcpp-server/bin
-./bnetserver
+# ./bnetserver
 # We should probably use exec here since it should allow to pass through SIGTERM for gracefull shutdown
 # https://betterprogramming.pub/shut-down-docker-apps-gracefully-even-when-running-in-tmux-or-screen-41e68ff17187
-# exec ./bnetserver
+exec ./bnetserver

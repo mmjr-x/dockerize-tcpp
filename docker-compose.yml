@@ -37,7 +37,7 @@ services:
       # - ./tcpp-repo:/tcpp-repo
       - ./configs:/tcpp-configs
     # stdin_open: true
-    # tty: true
+    tty: true
 
   tcpp-worldserver:
     build: ./docker/worldserver
