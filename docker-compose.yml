@@ -12,7 +12,7 @@ services:
       - MYSQL_ROOT_PASSWORD=trinity
     ports:
       # TODO: make this port only accessible from localhost since it should be just used for debugging the database and not be accessable to non host's on the host's lan
-      - "127.0.0.1:3307:3306"
+      - "127.0.0.1:3308:3306"
 
   tcpp-base:
     build:

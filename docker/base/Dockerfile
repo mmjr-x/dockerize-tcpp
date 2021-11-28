@@ -19,6 +19,7 @@ RUN apt-get update -y \
   && mkdir /tcpp-build \
   && cd /tcpp-build \
   && cmake /tcpp-repo -DCMAKE_INSTALL_PREFIX=/tcpp-server -DWITH_DYNAMIC_LINKING=ON -DSCRIPTS="dynamic" \
+  # && cmake /tcpp-repo -DCMAKE_INSTALL_PREFIX=/tcpp-server \
   && make -j$(grep processor /proc/cpuinfo | wc -l) install
 
 COPY ./tcpp-tdb/ /tcpp-server/bin
