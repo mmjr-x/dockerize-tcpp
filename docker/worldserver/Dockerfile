@@ -2,8 +2,8 @@
 
 FROM dockerize-tcpp/tcpp-base AS tcpp-worldserver
 
-# This is to ensure that we will not accidentally use the copied repo instead of the volume mounted one defined in the docker-compose.yml
-RUN rm -rf /tcpp-repo
+# # This is to ensure that we will not accidentally use the copied repo instead of the volume mounted one defined in the docker-compose.yml
+# RUN rm -rf /tcpp-repo
 
 
 

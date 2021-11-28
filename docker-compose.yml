@@ -6,6 +6,7 @@ services:
     restart: always
     volumes:
       - tcpp-db:/var/lib/mysql
+      - ./docker/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - MYSQL_USER=trinity
       - MYSQL_PASSWORD=trinity
@@ -48,7 +49,7 @@ services:
         - '8085:8085'
         - '8086:8086' # this one is also probably not required since it is used for Metrics if enabled (although not sure)
     volumes:
-      - ./tcpp-repo:/tcpp-repo
+      # - ./tcpp-repo:/tcpp-repo
       - ./server-data:/tcpp-server/data
       - ./configs:/tcpp-configs
       # - tcpp-configs:/tcpp-server/etc
