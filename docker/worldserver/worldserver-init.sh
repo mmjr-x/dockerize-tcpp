@@ -7,9 +7,12 @@ set -euxo pipefail
 # https://stackoverflow.com/a/7810345/13620003
 [ -f "/tcpp-configs/worldserver-changes.conf" ] && crudini --merge /tcpp-server/etc/worldserver.conf < /tcpp-configs/worldserver-changes.conf
 
-# Uncomment this if you want to just run the container indefinitely (to inspect it or something)
-tail -f /dev/null
+# # Uncomment this if you want to just run the container indefinitely (to inspect it or something)
+# tail -f /dev/null
 
-# # Start the worldserver
-# cd /tcpp-server/bin
+# Start the worldserver
+cd /tcpp-server/bin
 # ./worldserver
+# We should probably use exec here since it should allow to pass through SIGTERM for gracefull shutdown
+# https://betterprogramming.pub/shut-down-docker-apps-gracefully-even-when-running-in-tmux-or-screen-41e68ff17187
+exec ./worldserver

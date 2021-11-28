@@ -10,8 +10,17 @@ MAKE SURE YOU CHECK OUT EVERYTHING WHILE MAINTAINING THE CORRECT LINE ENDINGS (w
 
 
 set trinity core db user to root (or make it so that it can create the required databases)
+^ No longer required
+
 
 run server
 
 change database
 in character update table 2021_07_29_00_characters.sql.sql -> 2021_07_29_00_characters.sql and change the checksum to BCD64CE7EB34E6054D14A6C7F33B2ADC0678092C (sha1)
+^ No longer required
+
+# How do I attach to my world server so I can acctually get to the console?
+`docker attach $(docker ps -f name=tcpp-worldserver --quiet)`
+
+# How do I deattach without closing the server?
+`Ctrl^z+Ctrl^c`

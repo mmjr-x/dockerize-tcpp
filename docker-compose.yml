@@ -12,7 +12,6 @@ services:
       - MYSQL_PASSWORD=trinity
       - MYSQL_ROOT_PASSWORD=trinity
     ports:
-      # TODO: make this port only accessible from localhost since it should be just used for debugging the database and not be accessable to non host's on the host's lan
       - "127.0.0.1:3308:3306"
 
   tcpp-base:
@@ -25,18 +24,20 @@ services:
     # volumes:
     #   - ./tcpp-repo:/tcpp-repo
 
-  # tcpp-bnetserver:
-  #   build: ./docker/bnetserver
-  #   image: dockerize-tcpp/tcpp-bnetserver
-  #   depends_on:
-  #     - tcpp-base
-  #     - tcpp-db
-  #   ports:
-  #     - '1118'
-  #     - '1119:1119'
-  #   volumes:
-  #     # - ./tcpp-repo:/tcpp-repo
-  #     - ./configs:/tcpp-configs
+  tcpp-bnetserver:
+    build: ./docker/bnetserver
+    image: dockerize-tcpp/tcpp-bnetserver
+    depends_on:
+      - tcpp-base
+      - tcpp-db
+    ports:
+      - '1118'
+      - '1119:1119'
+    volumes:
+      # - ./tcpp-repo:/tcpp-repo
+      - ./configs:/tcpp-configs
+    # stdin_open: true
+    # tty: true
 
   tcpp-worldserver:
     build: ./docker/worldserver
@@ -53,6 +54,8 @@ services:
       - ./server-data:/tcpp-server/data
       - ./configs:/tcpp-configs
       # - tcpp-configs:/tcpp-server/etc
+    stdin_open: true
+    tty: true
 
 volumes:
   tcpp-db:
