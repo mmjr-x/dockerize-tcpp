@@ -24,3 +24,13 @@ in character update table 2021_07_29_00_characters.sql.sql -> 2021_07_29_00_char
 
 # How do I deattach without closing the server?
 `Ctrl^z+Ctrl^c`
+
+# TODO:
+- Enable telnet and make it accessable
+- Make shutdown gracefuller (fix SIGTERM passthrough in worldserver and see if adding a saveall is possible before halting)
+- See if we need to store the acctual repo in a named volume (to prevent accidantel loss of unsaved data)
+- Document more
+- Look into starting everything in a tmux session
+- Maybe simplify the Docker image into a single image (with multiple starting options)
+- See if we can make it so that the realmlist settings are set correctly for connections from the host
+- Optimize DockerFile's
