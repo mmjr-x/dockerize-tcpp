@@ -34,3 +34,6 @@ in character update table 2021_07_29_00_characters.sql.sql -> 2021_07_29_00_char
 - Maybe simplify the Docker image into a single image (with multiple starting options)
 - See if we can make it so that the realmlist settings are set correctly for connections from the host
 - Optimize DockerFile's
+- Improve the way configs are processed
+- See if we can make it so custom sql's can be added (and will be applied on server boot)
+- Make integration with vscode better (predefined the required plugin's before attaching and stuff)
