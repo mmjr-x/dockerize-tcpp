@@ -37,3 +37,4 @@ in character update table 2021_07_29_00_characters.sql.sql -> 2021_07_29_00_char
 - Improve the way configs are processed
 - See if we can make it so custom sql's can be added (and will be applied on server boot)
 - Make integration with vscode better (predefined the required plugin's before attaching and stuff)
+- Might be nice to add a simple signup page/webserver (dust off the old SOAP project)?
