@@ -10,6 +10,14 @@ set -euxo pipefail
 # # Uncomment this if you want to just run the container indefinitely (to inspect it or something)
 # tail -f /dev/null
 
+# Wait for database to be up
+# while ! curl -o - tcpp-db:3306; do sleep 1; done
+# while ! wget tcpp-db:3306; do sleep 1; done
+# TODO: Sadly this does not work, since the required database acctually needs to be present
+# while ! mysqladmin ping -h"tcpp-db" --silent; do sleep 1; done
+# while ! (mysqladmin ping -h"tcpp-db" --silent && mysql -h'tcpp-db' -u'trinity' -p'trinity' -s -N -e "SELECT schema_name FROM information_schema.schemata WHERE schema_name = 'auth'") ; do sleep 1; done
+while ! (mysqladmin ping -h"tcpp-db" --silent && mysql -h'tcpp-db' -u'trinity' -p'trinity' -s -N -e "USE auth;") ; do sleep 1; done
+
 # Start the worldserver
 cd /tcpp-server/bin
 # ./bnetserver
