@@ -7,13 +7,13 @@ set -euxo pipefail
 # https://stackoverflow.com/a/7810345/13620003
 [ -f "/tcpp-configs/worldserver-changes.conf" ] && crudini --merge /tcpp-server/etc/worldserver.conf < /tcpp-configs/worldserver-changes.conf
 
-# # Uncomment this if you want to just run the container indefinitely (to inspect it or something)
-# tail -f /dev/null
-
 # Wait for database to be up
 # while ! curl -o - tcpp-db:3306; do sleep 1; done
 # while ! wget tcpp-db:3306; do sleep 1; done
 while ! mysqladmin ping -h"tcpp-db" --silent; do sleep 1; done
+
+# # Uncomment this if you want to just run the container indefinitely (to inspect it or something)
+# tail -f /dev/null
 
 # Start the worldserver
 cd /tcpp-server/bin
