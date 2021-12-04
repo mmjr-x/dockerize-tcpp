@@ -27,6 +27,7 @@ services:
   tcpp-bnetserver:
     build: ./docker/bnetserver
     image: dockerize-tcpp/tcpp-bnetserver
+    restart: on-failure
     depends_on:
       - tcpp-base
       - tcpp-db
@@ -42,6 +43,7 @@ services:
   tcpp-worldserver:
     build: ./docker/worldserver
     image: dockerize-tcpp/tcpp-worldserver
+    restart: on-failure
     depends_on:
       - tcpp-base
       - tcpp-db
