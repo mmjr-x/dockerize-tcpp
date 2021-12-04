@@ -19,11 +19,22 @@ change database
 in character update table 2021_07_29_00_characters.sql.sql -> 2021_07_29_00_characters.sql and change the checksum to BCD64CE7EB34E6054D14A6C7F33B2ADC0678092C (sha1)
 ^ No longer required
 
+# Manual step's after upping the containers (Only required if your starting off a clean database!)
+1. Attach to the worldserver container using `docker attach $(docker ps -f name=tcpp-worldserver --quiet)`
+2. Type `yes` followed by an `enter` to populate the database
+3. Wait till step 2 is done
+4. Repeat steps 2. and 3. untill all database are set up (should be 4 in total, auth, characters, hotfixes and world)
+5. Server should now start and you will end up in the console
+6. Detach from the container using `Ctrl^z+Ctrl^c`
+7. You are good to go
+
 # How do I attach to my world server so I can acctually get to the console?
 `docker attach $(docker ps -f name=tcpp-worldserver --quiet)`
 
 # How do I deattach without closing the server?
 `Ctrl^z+Ctrl^c`
+or
+`Ctrl^p+Ctrl^q` or `Ctrl^p+q` (supposedly although this does not work in the vscode terminal)
 
 # TODO:
 - Enable telnet and make it accessable

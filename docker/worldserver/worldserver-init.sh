@@ -20,6 +20,6 @@ cd /tcpp-server/bin
 # ./worldserver
 # We should probably use exec here since it should allow to pass through SIGTERM for gracefull shutdown
 # https://betterprogramming.pub/shut-down-docker-apps-gracefully-even-when-running-in-tmux-or-screen-41e68ff17187
-# exec ./worldserver
+exec ./worldserver
 # TODO: This does not play nicely with stopping via SIGTERM, see if we can fix that
-(printf "yes\nyes\nyes\nyes\n" && cat) | exec ./worldserver
+# (printf "yes\nyes\nyes\nyes\n" && cat) | exec ./worldserver

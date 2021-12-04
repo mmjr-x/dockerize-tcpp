@@ -54,7 +54,8 @@ services:
       - ./server-data:/tcpp-server/data
       - ./configs:/tcpp-configs
       # - tcpp-configs:/tcpp-server/etc
-    stdin_open: true
+    # https://github.com/moby/moby/issues/2838
+    stdin_open: true # this should probably be commented out, since if this is on, when you are attached to the docker container ctr-c will kill the process inside the container instead of detach
     tty: true
 
 volumes:
