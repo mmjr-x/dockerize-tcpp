@@ -17,10 +17,9 @@ RUN apt-get update -y \
   && apt-get clean -y \
   && update-ca-certificates \
   && git clone $([ -z "${TCPP_BRANCH}" ] || echo "-b ${TCPP_BRANCH}") $TCPP_REPO /tcpp-repo \
-  && cd /tcpp-repo \
-  && git submodule init \
-  && git submodule update \
-  && cd .. \
+  && git -C /tcpp-repo submodule init \
+  # TODO: git submodule update can fail with exit code 0, causing execution to contintue
+  && git -C /tcpp-repo submodule update \ 
   && [ -z "${TCPP_UPSTREAM}" ] || git -C /tcpp-repo remote add upstream ${TCPP_UPSTREAM} \
   # && if [ ! -z "${TCPP_UPSTREAM}" ] ; then cd /tcpp-repo && git remote add upstream ${TCPP_UPSTREAM} ; fi \
   \
