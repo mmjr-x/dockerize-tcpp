@@ -16,7 +16,9 @@ RUN apt-get update -y \
   && apt-get install -y --no-install-recommends ca-certificates \
   && apt-get clean -y \
   && update-ca-certificates \
-  && git clone –recurse-submodules $([ -z "${TCPP_BRANCH}" ] || echo "-b ${TCPP_BRANCH}") $TCPP_REPO /tcpp-repo \
+  && git clone $([ -z "${TCPP_BRANCH}" ] || echo "-b ${TCPP_BRANCH}") $TCPP_REPO /tcpp-repo \
+  && git submodule init \
+  && git submodule update \
   && [ -z "${TCPP_UPSTREAM}" ] || git -C /tcpp-repo remote add upstream ${TCPP_UPSTREAM} \
   # && if [ ! -z "${TCPP_UPSTREAM}" ] ; then cd /tcpp-repo && git remote add upstream ${TCPP_UPSTREAM} ; fi \
   \
